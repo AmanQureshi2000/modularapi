@@ -13,7 +13,8 @@ app.use(express.json());
 app.get('/health',(req,res)=>{
     res.status(201).json({
         author:"Aman Qureshi",
-        age:27
+        age:27,
+        status:"Service is running fine."
     })
 })
 
