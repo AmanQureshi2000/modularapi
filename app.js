@@ -10,6 +10,13 @@ const categoryRoutes = require('./routes/Category.js');
 // Middleware
 app.use(express.json());
 
+app.get('/health',(req,res)=>{
+    res.status(201).json({
+        author:"Aman Qureshi",
+        age:27
+    })
+})
+
 // Routes
 app.use('/users', userRoutes);
 app.use('/books', bookRoutes);
