@@ -8,7 +8,11 @@ const pool = new Pool({
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
     max: parseInt(process.env.DB_POOL_MAX),
-    idleTimeoutMillis: parseInt(process.env.DB_IDLE_TIMEOUT)
+    idleTimeoutMillis: parseInt(process.env.DB_IDLE_TIMEOUT),
+    ssl: {
+        require: true,
+        rejectUnauthorized: false // allows connection without the Aiven CA cert
+  }
 });
 
 const runQuery = async (text, params = []) => {
