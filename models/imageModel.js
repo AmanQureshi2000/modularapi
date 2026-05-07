@@ -7,23 +7,27 @@ const { runQuery } = require('../config/db.js');
             VALUES ($1, $2, $3, $4)
             RETURNING *;
         `;
-        return await runQuery(query, [fileName, fileUrl, mimeType, fileSize]);
+        const result = await runQuery(query, [fileName, fileUrl, mimeType, fileSize]);
+        return result.success ? result.data[0] : result;
     };
 
     // Read All
     const findAll = async () => {
-        return await runQuery('SELECT * FROM images ORDER BY created_at DESC;');
+        const result = await runQuery('SELECT * FROM images ORDER BY created_at DESC;');
+        return result.success ? result.data : result;
     };
 
     // Read One
     const findById = async (id) => {
-        return await runQuery('SELECT * FROM images WHERE id = $1;', [id]);
+        const result = await runQuery('SELECT * FROM images WHERE id = $1;', [id]);
+        return result.success ? result.data[0] : result;
     };
 
     // Update (e.g., updating the name)
     const updateName = async (id, newName) => {
         const query = 'UPDATE images SET file_name = $1 WHERE id = $2 RETURNING *;';
-        return await runQuery(query, [newName, id]);
+        const result = await runQuery(query, [newName, id]);
+        return result.success ? result.data[0] : result;
     };
 
     // Delete
