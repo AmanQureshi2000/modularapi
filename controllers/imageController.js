@@ -47,5 +47,5 @@ module.exports = {
     getAllImages,
     getImageById,
     deleteImage,
-    updateName
+    updateImage
 }
