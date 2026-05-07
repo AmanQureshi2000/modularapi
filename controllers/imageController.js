@@ -35,9 +35,17 @@ deleteImage = async (req, res) => {
     res.status(result.success ? 200 : 500).json(result);
 };
 
+updateImage = async (req, res) => {
+    const { id } = req.params;
+    const { newName } = req.body;
+    const result = await updateName(id, newName);
+    res.status(result.success ? 200 : 500).json(result);
+};
+
 module.exports = {
     uploadImage,
     getAllImages,
     getImageById,
-    deleteImage
+    deleteImage,
+    updateName
 }
