@@ -5,7 +5,7 @@ const {
     getAllImages,
     getImageById,
     deleteImage
-} = require('./imageController');
+} = require('../controllers/imageController.js');
 
 // POST /api/images - Create a new record
 router.post('/', uploadImage);
