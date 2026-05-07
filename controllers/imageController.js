@@ -7,13 +7,7 @@ const {
 } = require('../models/imageModel.js');
 
 uploadImage = async (req, res) => {
-    const { fileName, fileUrl, mimeType, fileSize } = req.body;
-    
-    if (!fileName || !fileUrl) {
-        return res.status(400).json({ success: false, error: "Missing required fields" });
-    }
-
-    const result = await createImage(fileName, fileUrl, mimeType, fileSize);
+    const result = await createImage(req.body);
     res.status(result.success === false ? 500 : 201).json(result);
 };
 
