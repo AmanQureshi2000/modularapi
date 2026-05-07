@@ -4,8 +4,8 @@ const {
     uploadImage,
     getAllImages,
     getImageById,
-    deleteImage,
-    updateImage
+    DeleteImage,
+    UpdateImage
 } = require('../controllers/imageController.js');
 
 // POST /api/images - Create a new record
@@ -18,9 +18,9 @@ router.get('/', getAllImages);
 router.get('/:id', getImageById);
 
 // DELETE /api/images/:id - Remove a record
-router.delete('/:id', deleteImage);
+router.delete('/:id', DeleteImage);
 
-router.put('/:id', updateImage);
+router.put('/:id', UpdateImage);
 
 
 module.exports = router;

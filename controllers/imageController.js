@@ -1,9 +1,9 @@
-const{
-    create,
-    findAll,
-    findById,
-    updateName,
-    Delete
+const {
+    getImages,
+    getImage,
+    createImage,
+    updateImage,
+    deleteImage
 } = require('../models/imageModel.js');
 
 uploadImage = async (req, res) => {
@@ -13,39 +13,37 @@ uploadImage = async (req, res) => {
         return res.status(400).json({ success: false, error: "Missing required fields" });
     }
 
-    const result = await create(fileName, fileUrl, mimeType, fileSize);
-    res.status(result.success ? 201 : 500).json(result);
+    const result = await createImage(fileName, fileUrl, mimeType, fileSize);
+    res.status(result.success === false ? 500 : 201).json(result);
 };
 
 getAllImages = async (req, res) => {
-    const result = await findAll();
-    res.status(result.success ? 200 : 500).json(result);
+    const result = await getImages();
+    res.status(result.success === false ? 500 : 200).json(result);
 };
 
 getImageById = async (req, res) => {
-    const result = await findById(req.params.id);
-    if (result.success && result.rowCount === 0) {
+    const result = await getImage(req.params.id);
+    if (!result || (result.success && result.rowCount === 0)) {
         return res.status(404).json({ success: false, error: "Image not found" });
     }
-    res.status(result.success ? 200 : 500).json(result);
+    res.status(result.success === false ? 500 : 200).json(result);
 };
 
-deleteImage = async (req, res) => {
-    const result = await Delete(req.params.id);
-    res.status(result.success ? 200 : 500).json(result);
+UpdateImage = async (req, res) => {
+    const result = await updateImage(req.params.id, req.body.newName);
+    res.status(result.success === false ? 400 : 200).json(result);
 };
 
-updateImage = async (req, res) => {
-    const { id } = req.params;
-    const { newName } = req.body;
-    const result = await updateName(id, newName);
-    res.status(result.success ? 200 : 500).json(result);
+DeleteImage = async (req, res) => {
+    const result = await deleteImage(req.params.id);
+    res.status(result.success === false ? 500 : 200).json(result);
 };
 
 module.exports = {
     uploadImage,
     getAllImages,
     getImageById,
-    deleteImage,
-    updateImage
-}
+    UpdateImage,
+    DeleteImage
+};
