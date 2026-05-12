@@ -7,6 +7,7 @@ const bookRoutes = require('./routes/Book.js');
 const computerRoutes = require('./routes/Computer.js');
 const categoryRoutes = require('./routes/Category.js');
 const imageRoutes = require('./routes/imageRoutes.js');
+const youtubeRoutes = require('./routes/Youtube.js');
 
 
 
@@ -28,6 +29,7 @@ app.use('/books', bookRoutes);
 app.use('/computers', computerRoutes);
 app.use('/categories', categoryRoutes);
 app.use('/images',imageRoutes);
+app.use('/youtube',youtubeRoutes);
 
 
 // Centralized Error Handling
