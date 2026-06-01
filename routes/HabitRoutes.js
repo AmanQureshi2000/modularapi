@@ -11,11 +11,13 @@ const {
     deleteExistingHabit,
     completeHabit,
     uncompleteHabit,
-    getDashboard
+    getDashboard,
+    getChartData
 } = require('../controllers/HabitController.js');
 
 // Dashboard routes
 router.get('/dashboard', getDashboard);
+router.get('/charts/data', getChartData);
 
 // Habit CRUD routes
 router.get('/', getAllHabits);
