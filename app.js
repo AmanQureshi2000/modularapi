@@ -9,6 +9,8 @@ const categoryRoutes = require('./routes/Category.js');
 const imageRoutes = require('./routes/imageRoutes.js');
 const youtubeRoutes = require('./routes/Youtube.js');
 const todoRoutes = require('./routes/todoRoutes.js');
+const habitRoutes = require('./routes/HabitRoutes');
+
 
 
 
@@ -32,7 +34,7 @@ app.use('/categories', categoryRoutes);
 app.use('/images',imageRoutes);
 app.use('/youtube',youtubeRoutes);
 app.use('/todos',todoRoutes);
-
+app.use('/habits',habitRoutes);
 
 // Centralized Error Handling
 app.use((err, req, res, next) => {
